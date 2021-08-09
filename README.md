@@ -3,7 +3,7 @@
 1. Download the script from my repository:
 
 ```bash
-wget https://raw.githubusercontent.com/cybernekit/scriptsCosmoSDK/main/restakingRizon.sh
+wget https://raw.githubusercontent.com/nook0ne/scriptsCosmoSDK/main/restakingRizon.sh
 ```
 
 2. Give the permissions to this file:
@@ -24,6 +24,7 @@ nano restakingRizon.sh
 4. Open the screen or tmux session:
  
  ```bash
+sudo apt install screen
 screen -S scriptrizon
 ```
 5. Run auto claiming and delegating rewards:
