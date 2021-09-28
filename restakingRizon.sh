@@ -13,16 +13,17 @@ for (( ;; )); do
         BAL=$(rizond query bank balances ${DELEGATOR} --node ${NODE});
         echo -e "BALANCE: ${GREEN}${BAL}${NC} uatolo\n"
         echo -e "Claim rewards\n"
-        echo -e "${PASWD}\n${PASWD}\n" | rizond tx distribution withdraw-rewards ${VALIDATOR} --chain-id groot-011 --from ${ACC_NAME} --node ${NODE} --commission -y --fees 20uatolo
+        echo -e "${PASWD}\n${PASWD}\n" | rizond tx distribution withdraw-rewards ${VALIDATOR} --chain-id titan-1 --from ${ACC_NAME} --node ${NODE} --commission -y --fees 20uatolo
         for (( timer=10; timer>0; timer-- ))
         do
                 printf "* sleep for ${RED}%02d${NC} sec\r" $timer
                 sleep 1
         done
         BAL=$(rizond query bank balances ${DELEGATOR} --node ${NODE} -o json | jq -r '.balances | .[].amount');
+        BAL=$((BAL-1000000));
         echo -e "BALANCE: ${GREEN}${BAL}${NC} uatolo\n"
         echo -e "Stake ALL\n"
-        echo -e "${PASWD}\n${PASWD}\n" | rizond tx staking delegate ${VALIDATOR} ${BAL}uatolo --chain-id groot-011 --from ${ACC_NAME} --node ${NODE} -y --fees 20uatolo
+        echo -e "${PASWD}\n${PASWD}\n" | rizond tx staking delegate ${VALIDATOR} ${BAL}uatolo --chain-id titan-1 --from ${ACC_NAME} --node ${NODE} -y --fees  20uatolo
         for (( timer=${DELAY}; timer>0; timer-- ))
         do
                 printf "* sleep for ${RED}%02d${NC} sec\r" $timer
